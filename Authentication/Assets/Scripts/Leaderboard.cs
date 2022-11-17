@@ -10,8 +10,10 @@ public class Leaderboard : MonoBehaviour
     public GameObject leaderboardCanvas;
     public GameObject[] leaderboardEntries;
 
+    public static bool isPlaying;
+
     public static Leaderboard instance;
-    void Awake() { instance = this; }
+    void Awake() { instance = this; isPlaying = false; }
 
     public void OnLoggedIn()
     {

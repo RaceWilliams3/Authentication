@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour
     public GameObject playButton;
     public TextMeshProUGUI curTimeText;
 
-    private bool isPlaying;
 
     void Awake()
     {
@@ -26,7 +25,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (!isPlaying)
+        if (!Leaderboard.isPlaying)
             return;
 
         float x = Input.GetAxis("Horizontal") * speed;
@@ -40,14 +39,14 @@ public class PlayerController : MonoBehaviour
     public void Begin()
     {
         startTime = Time.time;
-        isPlaying = true;
+        Leaderboard.isPlaying = true;
         playButton.SetActive(false);
     }
 
     void End()
     {
         timeTaken = Time.time - startTime;
-        isPlaying = false;
+        Leaderboard.isPlaying = false;
         Leaderboard.instance.SetLeaderboardEntry(-Mathf.RoundToInt(timeTaken * 1000.0f));
         playButton.SetActive(true);
     }
